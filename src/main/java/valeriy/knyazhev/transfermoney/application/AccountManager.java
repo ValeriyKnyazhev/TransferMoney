@@ -50,7 +50,7 @@ public class AccountManager {
 
     public void transferMoney(int fromAccountId, int toAccountId, long amount) {
         if (fromAccountId == toAccountId) {
-            throw new IllegalArgumentException("From and to account must be deffirent.");
+            throw new IllegalArgumentException("From and to account must be different.");
         }
         Account accountFrom = this.repository.findById(fromAccountId);
         Account accountTo = this.repository.findById(toAccountId);
