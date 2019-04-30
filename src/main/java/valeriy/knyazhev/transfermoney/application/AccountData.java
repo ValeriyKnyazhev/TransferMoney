@@ -1,9 +1,11 @@
 package valeriy.knyazhev.transfermoney.application;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 /**
  * @author Valeriy Knyazhev
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AccountData {
 
     private final int id;
