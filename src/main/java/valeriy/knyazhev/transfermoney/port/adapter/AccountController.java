@@ -19,10 +19,10 @@ import java.util.List;
 @Path("/accounts")
 public class AccountController {
 
-    private AccountManager accountManager;
+    private final AccountManager accountManager;
 
-    public AccountController() {
-        this.accountManager = AccountManager.getInstance();
+    public AccountController(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 
     @POST

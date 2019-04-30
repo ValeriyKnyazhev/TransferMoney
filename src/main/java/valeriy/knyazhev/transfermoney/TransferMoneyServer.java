@@ -3,6 +3,9 @@ package valeriy.knyazhev.transfermoney;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import valeriy.knyazhev.transfermoney.application.AccountManager;
+import valeriy.knyazhev.transfermoney.application.InMemoryAccountRepository;
+import valeriy.knyazhev.transfermoney.domain.model.AccountRepository;
 import valeriy.knyazhev.transfermoney.port.adapter.AccountController;
 
 import javax.ws.rs.core.UriBuilder;
@@ -14,18 +17,37 @@ import java.net.URI;
  */
 public class TransferMoneyServer {
 
-    private HttpServer server;
+    private final HttpServer server;
 
-    public void startServer(int port) throws IOException {
-        ResourceConfig resourceConfig = new ResourceConfig()
-            .registerClasses(AccountController.class);
+    private TransferMoneyServer(HttpServer server) {
+        this.server = server;
+    }
+
+    public static TransferMoneyServer createServer(int port, ServerConfig config) {
         URI uri = UriBuilder.fromPath("http://localhost:" + port).build();
-        this.server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig, false);
+        return new TransferMoneyServer(GrizzlyHttpServerFactory.createHttpServer(uri, config, false));
+    }
+
+    public void start() throws IOException {
         this.server.start();
     }
 
-    public void stopServer() {
+    public void stop() {
         this.server.shutdownNow();
+    }
+
+    public static class ServerConfig extends ResourceConfig {
+
+        private ServerConfig(AccountController controller) {
+            register(controller);
+        }
+
+        public static ServerConfig setup() {
+            AccountRepository repository = new InMemoryAccountRepository();
+            AccountManager manager = new AccountManager(repository);
+            AccountController controller = new AccountController(manager);
+            return new ServerConfig(controller);
+        }
     }
 
 }

@@ -6,11 +6,14 @@ package valeriy.knyazhev.transfermoney;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        TransferMoneyServer server = new TransferMoneyServer();
+        TransferMoneyServer server = TransferMoneyServer.createServer(
+            8080,
+            TransferMoneyServer.ServerConfig.setup()
+        );
         try {
-            server.startServer(8080);
+            server.start();
         } catch (Exception e) {
-            server.stopServer();
+            server.stop();
         }
     }
 

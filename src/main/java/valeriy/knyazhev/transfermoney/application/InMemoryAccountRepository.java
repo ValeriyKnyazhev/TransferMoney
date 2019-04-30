@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Valeriy Knyazhev
  */
-class InMemoryAccountRepository implements AccountRepository {
+public class InMemoryAccountRepository implements AccountRepository {
 
     private final List<Account> accounts = new ArrayList<>();
 

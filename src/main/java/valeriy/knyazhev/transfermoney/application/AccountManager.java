@@ -11,16 +11,11 @@ import java.util.stream.Collectors;
  */
 public class AccountManager {
 
-    private static final AccountManager INSTANCE = new AccountManager();
 
     private final AccountRepository repository;
 
-    private AccountManager() {
-        this.repository = new InMemoryAccountRepository();
-    }
-
-    public static AccountManager getInstance() {
-        return INSTANCE;
+    public AccountManager(AccountRepository repository) {
+        this.repository = repository;
     }
 
     private static AccountData constructData(Account account) {
