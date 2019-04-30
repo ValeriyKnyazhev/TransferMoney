@@ -1,9 +1,8 @@
 plugins {
-    id 'java'
+    id "java"
 }
 
-group 'valeriy.knyazhev'
-version '1.0-SNAPSHOT'
+group "valeriy.knyazhev"
 
 sourceCompatibility = 11
 
@@ -24,6 +23,32 @@ dependencies {
     compile("org.glassfish.jersey.media:jersey-media-json-jackson:2.28")
 
     testCompile("junit:junit:4.12")
-    testCompile("org.assertj:assertj-core:3.11.1")
-    testCompile("org.mockito:mockito-core:2.23.4")
+    testCompile("org.assertj:assertj-core:3.12.2")
+    testCompile("org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty:2.28")
+    testCompile("org.mockito:mockito-core:2.27.0")
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes(
+                "Main-Class": "valeriy.knyazhev.transfermoney.Main"
+        )
+    }
+}
+
+task runJar(type: JavaExec) {
+    main = "-jar"
+    if (project.hasProperty('port')) {
+        args = [
+                "./build/libs/TransferMoney.jar",
+                "-p",
+                port
+        ]
+    } else {
+        args "./build/libs/TransferMoney.jar"
+    }
+
 }

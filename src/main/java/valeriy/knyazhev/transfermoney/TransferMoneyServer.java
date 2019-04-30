@@ -2,6 +2,7 @@ package valeriy.knyazhev.transfermoney;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import valeriy.knyazhev.transfermoney.application.AccountManager;
 import valeriy.knyazhev.transfermoney.application.InMemoryAccountRepository;
@@ -41,7 +42,7 @@ public class TransferMoneyServer {
 
         private ServerConfig(AccountController controller) {
             register(controller);
-            registerClasses(ExceptionHandler.class);
+            registerClasses(ExceptionHandler.class, JacksonFeature.class);
         }
 
         public static ServerConfig setup() {
