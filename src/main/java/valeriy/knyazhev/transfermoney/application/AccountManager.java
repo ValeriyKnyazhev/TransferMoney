@@ -49,7 +49,9 @@ public class AccountManager {
     }
 
     public void transferMoney(int fromAccountId, int toAccountId, long amount) {
-        // TODO check if account equals
+        if (fromAccountId == toAccountId) {
+            throw new IllegalArgumentException("From and to account must be deffirent.");
+        }
         Account accountFrom = this.repository.findById(fromAccountId);
         Account accountTo = this.repository.findById(toAccountId);
 
