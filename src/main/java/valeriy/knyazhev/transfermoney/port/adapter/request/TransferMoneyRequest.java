@@ -3,7 +3,7 @@ package valeriy.knyazhev.transfermoney.port.adapter.request;
 /**
  * @author Valeriy Knyazhev
  */
-public class MoneyTransferRequest {
+public class TransferMoneyRequest {
 
     private long amount;
 

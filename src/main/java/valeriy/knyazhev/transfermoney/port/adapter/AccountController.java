@@ -5,7 +5,7 @@ import valeriy.knyazhev.transfermoney.application.AccountManager;
 import valeriy.knyazhev.transfermoney.port.adapter.model.AccountsModel;
 import valeriy.knyazhev.transfermoney.port.adapter.model.ResponseModel;
 import valeriy.knyazhev.transfermoney.port.adapter.request.MoneyActionRequest;
-import valeriy.knyazhev.transfermoney.port.adapter.request.MoneyTransferRequest;
+import valeriy.knyazhev.transfermoney.port.adapter.request.TransferMoneyRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -86,7 +86,7 @@ public class AccountController {
     @Path("/transfer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response takeMoneyFromAccount(MoneyTransferRequest request) {
+    public Response takeMoneyFromAccount(TransferMoneyRequest request) {
         this.accountManager.transferMoney(
             request.fromAccountId(), request.toAccountId(), request.amount()
         );

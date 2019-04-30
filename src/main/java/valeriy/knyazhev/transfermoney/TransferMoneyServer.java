@@ -7,6 +7,7 @@ import valeriy.knyazhev.transfermoney.application.AccountManager;
 import valeriy.knyazhev.transfermoney.application.InMemoryAccountRepository;
 import valeriy.knyazhev.transfermoney.domain.model.AccountRepository;
 import valeriy.knyazhev.transfermoney.port.adapter.AccountController;
+import valeriy.knyazhev.transfermoney.port.adapter.ExceptionHandler;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
@@ -40,6 +41,7 @@ public class TransferMoneyServer {
 
         private ServerConfig(AccountController controller) {
             register(controller);
+            registerClasses(ExceptionHandler.class);
         }
 
         public static ServerConfig setup() {
