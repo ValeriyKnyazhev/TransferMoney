@@ -45,7 +45,7 @@ GET http://localhost:8080/accounts
  
 ##### Put money to account 1
 ```
-POST http://localhost:8080/accounts/1
+POST http://localhost:8080/accounts/1/put
 {
   "amount": 1000
 }
@@ -53,7 +53,7 @@ POST http://localhost:8080/accounts/1
 
 ##### Take money from account 1
 ```
-POST http://localhost:8080/accounts/1
+POST http://localhost:8080/accounts/1/take
 {
   "amount": 1000
 }
@@ -61,7 +61,7 @@ POST http://localhost:8080/accounts/1
 
 ##### Transfer money from account 1 to account 2
 ```
-POST http://localhost:8080/accounts/
+POST http://localhost:8080/accounts/transfer
 {
   "amount": 1000,
   "fromAccountId": 1,
