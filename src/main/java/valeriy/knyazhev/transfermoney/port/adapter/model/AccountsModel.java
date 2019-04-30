@@ -11,9 +11,21 @@ import java.util.List;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AccountsModel {
 
-    public final List<AccountData> accounts;
+    public List<AccountData> accounts;
 
     public AccountsModel(List<AccountData> accounts) {
+        this.accounts = accounts;
+    }
+
+    protected AccountsModel() {
+        // empty
+    }
+
+    public List<AccountData> getAccounts() {
+        return this.accounts;
+    }
+
+    public void setAccounts(List<AccountData> accounts) {
         this.accounts = accounts;
     }
 

@@ -11,15 +11,25 @@ public class TransferMoneyRequest {
 
     private int toAccountId;
 
-    public long amount() {
+    public TransferMoneyRequest(int fromAccountId, int toAccountId, long amount) {
+        this.fromAccountId = fromAccountId;
+        this.toAccountId = toAccountId;
+        this.amount = amount;
+    }
+
+    protected TransferMoneyRequest() {
+        // empty
+    }
+
+    public long getAmount() {
         return this.amount;
     }
 
-    public int fromAccountId() {
+    public int getFromAccountId() {
         return this.fromAccountId;
     }
 
-    public int toAccountId() {
+    public int getToAccountId() {
         return this.toAccountId;
     }
 

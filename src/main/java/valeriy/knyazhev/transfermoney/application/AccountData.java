@@ -8,12 +8,24 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AccountData {
 
-    private final int id;
+    private int id;
 
-    private final long amount;
+    private long amount;
 
     public AccountData(int id, long amount) {
         this.id = id;
+        this.amount = amount;
+    }
+
+    protected AccountData() {
+        // empty
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 

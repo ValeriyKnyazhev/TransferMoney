@@ -5,7 +5,7 @@ package valeriy.knyazhev.transfermoney;
  */
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         TransferMoneyServer server = TransferMoneyServer.createServer(
             8080,
             TransferMoneyServer.ServerConfig.setup()

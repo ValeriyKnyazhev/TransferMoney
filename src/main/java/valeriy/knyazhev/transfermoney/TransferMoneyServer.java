@@ -50,6 +50,10 @@ public class TransferMoneyServer {
             AccountController controller = new AccountController(manager);
             return new ServerConfig(controller);
         }
+
+        public static ServerConfig setup(AccountController controller) {
+            return new ServerConfig(controller);
+        }
     }
 
 }

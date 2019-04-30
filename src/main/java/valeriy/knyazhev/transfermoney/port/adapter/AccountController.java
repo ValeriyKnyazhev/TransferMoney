@@ -62,7 +62,7 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response putMoneyToAccount(MoneyActionRequest request,
                                       @PathParam("accountId") int accountId) {
-        this.accountManager.putMoney(accountId, request.amount());
+        this.accountManager.putMoney(accountId, request.getAmount());
         return Response
             .status(Response.Status.OK)
             .entity(ResponseModel.info("Money successfully added to account " + accountId + "."))
@@ -75,7 +75,7 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response takeMoneyFromAccount(MoneyActionRequest request,
                                          @PathParam("accountId") int accountId) {
-        this.accountManager.takeMoney(accountId, request.amount());
+        this.accountManager.takeMoney(accountId, request.getAmount());
         return Response
             .status(Response.Status.OK)
             .entity(ResponseModel.info("Money successfully withdrawn from account " + accountId + "."))
@@ -88,14 +88,14 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response takeMoneyFromAccount(TransferMoneyRequest request) {
         this.accountManager.transferMoney(
-            request.fromAccountId(), request.toAccountId(), request.amount()
+            request.getFromAccountId(), request.getToAccountId(), request.getAmount()
         );
         return Response
             .status(Response.Status.OK)
             .entity(ResponseModel.info(
                 "Money successfully transferred from account "
-                    + request.fromAccountId() + " to account "
-                    + request.toAccountId() + "."
+                    + request.getFromAccountId() + " to account "
+                    + request.getToAccountId() + "."
                 )
             )
             .build();
