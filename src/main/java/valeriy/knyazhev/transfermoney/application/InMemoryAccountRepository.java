@@ -4,6 +4,7 @@ import valeriy.knyazhev.transfermoney.domain.model.Account;
 import valeriy.knyazhev.transfermoney.domain.model.AccountRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,6 +21,11 @@ class InMemoryAccountRepository implements AccountRepository {
             this.accounts.add(account);
             return account;
         }
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return Collections.unmodifiableList(this.accounts);
     }
 
     @Override

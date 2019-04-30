@@ -2,6 +2,7 @@ package valeriy.knyazhev.transfermoney.port.adapter;
 
 import valeriy.knyazhev.transfermoney.application.AccountData;
 import valeriy.knyazhev.transfermoney.application.AccountManager;
+import valeriy.knyazhev.transfermoney.port.adapter.model.AccountsModel;
 import valeriy.knyazhev.transfermoney.port.adapter.model.ResponseModel;
 import valeriy.knyazhev.transfermoney.port.adapter.request.MoneyActionRequest;
 import valeriy.knyazhev.transfermoney.port.adapter.request.MoneyTransferRequest;
@@ -9,6 +10,7 @@ import valeriy.knyazhev.transfermoney.port.adapter.request.MoneyTransferRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 
 /**
@@ -30,6 +32,16 @@ public class AccountController {
         return Response
             .status(Response.Status.OK)
             .entity(newAccount)
+            .build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response fetchAllAccounts() {
+        List<AccountData> accounts = this.accountManager.findAll();
+        return Response
+            .status(Response.Status.OK)
+            .entity(new AccountsModel(accounts))
             .build();
     }
 
